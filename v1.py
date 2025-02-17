@@ -11,7 +11,7 @@ st.title("OCR & バーコード読み取りアプリ")
 
 openai_api_key = st.text_input("OpenAI API Key", type="password")
 if not openai_api_key:
-    st.info("Please enter your OpenAI API key to proceed.", icon="️")
+    st.info("Please enter your OpenAI API key to proceed.")
     st.stop()
 
 def extract_text_from_image(image):
