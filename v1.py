@@ -9,11 +9,11 @@ import cv2
 import numpy as np
 from pyzbar.pyzbar import decode
 
-st.title("OCR & バーコード読み取りアプリ")
+st.title("OCR & Barcode Reader App")
 
 openai_api_key = st.text_input("OpenAI API Key", type="password")
 if not openai_api_key:
-    st.info("Please enter your OpenAI API key to proceed.")
+    st.info("Please add your OpenAI API key to continue.", icon="🗝️")
     st.stop()
 
 def extract_text_from_image(image):
@@ -56,25 +56,25 @@ def read_barcode(image):
         barcode_type = obj.type
         barcodes.append(f"{barcode_type}: {barcode_data}")
 
-    return barcodes if barcodes else ["バーコードが検出されませんでした"]
+    return barcodes if barcodes else ["No barcodes detected"]
 
-image_file = st.camera_input("カメラで画像を撮影")
+image_file = st.camera_input("Take a picture with your camera")
 
 if image_file is not None:
     image = Image.open(image_file)
-    st.image(image, caption="撮影した画像", use_container_width=True)
+    st.image(image, caption="Captured Image", use_container_width=True)
 
-    with st.spinner("テキストとバーコードを解析中..."):
+    with st.spinner("Analyzing text and barcodes..."):
         try:
             extracted_text = extract_text_from_image(image)
             barcodes = read_barcode(image)
 
-            st.subheader("OCR（テキスト抽出）結果:")
-            st.text_area("抽出されたテキスト", extracted_text, height=200)
+            st.subheader("OCR (Text Extraction) Results:")
+            st.text_area("Extracted Text", extracted_text, height=200)
 
-            st.subheader("バーコード読み取り結果:")
+            st.subheader("Barcode Reading Results:")
             for barcode in barcodes:
                 st.write(barcode)
         except Exception as e:
-            st.error(f"処理中にエラーが発生しました: {e}")
+            st.error(f"An error occurred during processing:{e}")
             st.stop()
