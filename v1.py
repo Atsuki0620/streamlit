@@ -23,7 +23,7 @@ def extract_text_from_image(image):
 
     client = openai.OpenAI(api_key=openai_api_key)
     response = client.chat.completions.create(
-        model="gpt-4-vision-preview",
+        model="gpt-4-vision",
         messages=[
             {"role": "system", "content": "Extract text from the given image."},
             {
