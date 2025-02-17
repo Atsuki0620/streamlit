@@ -2,5 +2,6 @@ streamlit
 Pillow
 openai
 opencv-python
+opencv-python-headless
 numpy
 pyzbar
