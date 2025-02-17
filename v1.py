@@ -25,7 +25,7 @@ def extract_text_from_image(image):
 
     client = openai.OpenAI(api_key=openai_api_key)
     response = client.chat.completions.create(
-        model="gpt-4-vision",  # モデル名を変更
+        model="gpt-4",  # モデル名を変更
         messages=[
             {"role": "system", "content": "Extract text from the given image."},
             {
